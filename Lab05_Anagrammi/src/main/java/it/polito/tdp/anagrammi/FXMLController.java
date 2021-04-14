@@ -40,10 +40,16 @@ public class FXMLController {
     	String parola = this.txtAnagramma.getText();
     	
     	if(parola!=null) {	
+    	
+    		if(!parola.matches("[a-zA-Z?]*")) {
+        		this.txtCorretti.setText("ERRORE: la parola non può contenere numeri!");
+        		return;
+        	}
     	ArrayList<String> paroleCorrette = new ArrayList<String>();
     	ArrayList<String> paroleErrate = new ArrayList<String>();
     	
     	HashMap<String, Boolean> parole = model.anagrammi(parola);
+    	
     	
     	for(String s: parole.keySet()) {
     		if(parole.get(s) == false){
@@ -66,7 +72,7 @@ public class FXMLController {
     	this.txtCorretti.setText(elencoC);
     	}
     	else {
-    		this.txtCorretti.setText("ERRORI: devi inserire ");
+    		this.txtCorretti.setText("ERRORE: devi inserire una parola!");
     	}
     }
 
